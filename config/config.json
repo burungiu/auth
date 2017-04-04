@@ -1,0 +1,11 @@
+{
+  "API_PORT": "3000",
+  "DATABASE": {
+   "host": "localhost",
+   "name": "basic_data",
+   "username": "root",
+   "password": "parolamysql123",
+   "dialect": "mysql"
+  }
+}
+
