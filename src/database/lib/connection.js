@@ -1,3 +1,5 @@
+'use strict'
+
 const Sequelize = require('sequelize');
 const configFile = require('../../../config/config.json');
 const config = Object.assign({}, configFile);

@@ -1,3 +1,4 @@
+'use strict'
 const express = require('express');
 const connection = require('./database').getConnection();
 const Sequelize = require('sequelize');
