@@ -1,0 +1,9 @@
+1) Install MySQL-server
+2) Set root password to "parolamysql123" without quote
+------Run bash command: mysqladmin -u root -p'old_your_password' password 'parolamysql123'
+3) Create database named basic_data
+------Login in data base: mysql -u root -pparolamysql123
+------Run comand in mysql console: CREATE DATABASE basic_data;
+------Exit mysql: type "quit"	
+4) Import our database 
+------Run command: mysql -u root -pparolamysql123 basic_data < our_database.sql
