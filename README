@@ -1,0 +1,9 @@
+Project readme file for dev.
+1) Clone your repository on your machine
+-----------git clone https://github.com/burungiu/Project
+2) Install nodejs
+-----------sudo apt-get install nodejs
+-----------sudo apt-get install npm
+-----------npm install or sudo npm install
+-----------sudo apt-get install mysql-server
+-------------configure mysql database(database_file/README)
