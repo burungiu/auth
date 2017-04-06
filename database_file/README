@@ -1,3 +1,5 @@
+IMPORT--DATABASE
+
 1) Install MySQL-server
 2) Set root password to "parolamysql123" without quote
 ------Run bash command: mysqladmin -u root -p'old_your_password' password 'parolamysql123'
@@ -7,3 +9,8 @@
 ------Exit mysql: type "quit"	
 4) Import our database 
 ------Run command: mysql -u root -pparolamysql123 basic_data < our_database.sql
+
+EXPORT--DATABASE
+1) Export command
+	mysqldump -u root -pparolmysql123 > new_dump_database.sql
+
