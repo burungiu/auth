@@ -6,6 +6,6 @@
    "username": "root",
    "password": "parolamysql123",
    "dialect": "mysql"
-  }
+ },
+  "secret": "ilovescotchyscotch"
 }
-
