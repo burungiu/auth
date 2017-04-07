@@ -13,8 +13,9 @@ const loginFunction = (req, res) => {
      if (data.dataValues.password != req.body.password) {
        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
      } else {
+       console.log();
        var token = jwt.sign({exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24), //24 hours
-         data:req.body.name}, superSecret);
+         data:req.body.name, admin: data.dataValues.is_admin}, superSecret);
        res.json({
          success: true,
          message: 'Enjoy your token!',
