@@ -14,7 +14,7 @@ const loginFunction = (req, res) => {
        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
      } else {
        var token = jwt.sign({exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24), //24 hours
-         username:req.body.name, admin: data.dataValues.is_admin}, superSecret);
+         username:req.body.name, userid: data.dataValues.idusers, admin: data.dataValues.is_admin}, superSecret);
        res.json({
          success: true,
          message: 'Enjoy your token!',

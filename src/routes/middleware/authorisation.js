@@ -1,6 +1,7 @@
 var jwt    = require('jsonwebtoken');
 var superSecret = require('../../config.js').secret;
 const User = require('../../models').Models.Users.Users;
+const UsersHandler = require('../../users/index.js');
 
 
 
@@ -29,10 +30,16 @@ const checkSimpleUser = (req, res, next) => {
     // verifies secret and checks exp
     jwt.verify(token, superSecret, function(err, decoded) {
       if (err ) { //invalid token
-        return res.json({ success: false, message: 'Failed to authenticate token.' });
+        return res.status(401).json({ success: false, message: 'Failed to authenticate token.' });
       } else {
-        req.decoded = decoded;
-        next();
+        UsersHandler.getUserByID(decoded.userid).then((data) => {
+          if (data.dataValues.banned === 1)
+            return res.status(401).json({success: false, message: 'You are banned'});
+          else {
+            req.decoded = decoded;
+            next();
+          }
+        });
       }
     });
   } else {
@@ -59,10 +66,9 @@ const checkAdminAccess = (req, res, next) => {
   if (token) {
     // verifies secret and checks exp
     jwt.verify(token, superSecret, function(err, decoded) {
-      console.log(decoded);
       if (err) { //invalid token
         return res.json({ success: false, message: 'Failed to authenticate token.' });
-      } else if (decoded.admin == 0) { //decoded token doesn't have admin access
+      } else if (decoded.admin === 0) { //decoded token doesn't have admin access
         return res.json({ success: false, message: 'No admin access'});
       } else { //valid admin access
         isStillAdmin(decoded.username).then((data) => {

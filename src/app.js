@@ -1,7 +1,5 @@
 'use strict'
 const express = require('express');
-const connection = require('./database').getConnection();
-const Sequelize = require('sequelize');
 const bodyParser  = require('body-parser');
 const config = require('./config');
 const get_users = require('./models');
