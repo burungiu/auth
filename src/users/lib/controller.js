@@ -1,7 +1,10 @@
 const User = require('../../models').Models.Users.Users;
 
 const getAllUsers = () => {
-  return User.findAll().then((data) => data);
+  return User.findAll().then((data) => data)
+  .catch((err) => {
+  	return err;
+  });
 }
 
 const getUserByID = (accountId) => {
@@ -18,7 +21,8 @@ const setBan = (accountId) => {
     } else {
     	return false;
     }
-  });
+  })
+  .catch((err) => return Promise.reject(err);
 }
 
 const unsetBan = (accountId) => {
@@ -32,7 +36,8 @@ const unsetBan = (accountId) => {
     } else {
     	return false;
     }
-  });
+  })
+  .catch((err) => Promise.reject(err));
 }
 
 module.exports = {

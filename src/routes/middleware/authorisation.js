@@ -15,7 +15,7 @@ const isStillAdmin = (username) => {
     }
   })
   .catch((err) => {
-    return false;
+    return Promise.reject(err);
   });
 }
 /*
@@ -78,6 +78,8 @@ const checkAdminAccess = (req, res, next) => {
             req.decoded = decoded;
             next();
           }
+        }).catch((err) => {
+          return res.json({status:503, message:"Database not work"}); 
         });
       }
     });

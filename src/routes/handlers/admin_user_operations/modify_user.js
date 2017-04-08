@@ -1,5 +1,5 @@
 const UsersHandler = require('../../../users/index.js');
-const _ = require('lodash');
+
 const setBan = (req, res) => {
   UsersHandler.setBan(req.params.accountID).then((data) => {
     if (data === false) {
