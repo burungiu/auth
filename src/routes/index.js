@@ -16,4 +16,7 @@ router.get('/user/', (req, res) => {
   res.send("User access aproved");
 });
 
+router.get('/login', (req, res) => res.render('login.ejs'));
+router.get('/signup', (req, res) => res.render('signup.ejs'));
+
 module.exports = router;
