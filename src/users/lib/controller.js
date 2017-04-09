@@ -1,5 +1,5 @@
 const User = require('../../models').Models.Users.Users;
-
+const _ = require('lodash');
 const getAllUsers = () => {
   return User.findAll().then((data) => data)
   .catch((err) => {
@@ -8,7 +8,14 @@ const getAllUsers = () => {
 }
 
 const getUserByID = (accountId) => {
-  return User.findOne({where:{idusers:accountId}}).then((data) => data);
+  return User.findOne({where:{idusers:accountId}}).then((data) => {
+    console.log(data);
+    if (_.isEmpty(data) || data === null || data.length === 0) {
+      return Promise.reject("No user");
+    } else {
+      return data;
+    }
+  });
 }
 const setBan = (accountId) => {
 	return User.findOne({ where: { idusers: accountId} })
@@ -22,7 +29,7 @@ const setBan = (accountId) => {
     	return false;
     }
   })
-  .catch((err) => return Promise.reject(err);
+  .catch((err) => Promise.reject(err));
 }
 
 const unsetBan = (accountId) => {

@@ -19,7 +19,7 @@ const loginFunction = (req, res) => {
          success: true,
          message: 'Enjoy your token!',
          token: token
-       });
+       });;
     }}});
  };
 

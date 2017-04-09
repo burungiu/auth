@@ -24,7 +24,7 @@ const isStillAdmin = (username) => {
 const checkSimpleUser = (req, res, next) => {
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
+  // recomended to use token in header
   // decode token
   if (token) {
     // verifies secret and checks exp
@@ -32,6 +32,7 @@ const checkSimpleUser = (req, res, next) => {
       if (err ) { //invalid token
         return res.status(401).json({ success: false, message: 'Failed to authenticate token.' });
       } else {
+        console.log(decoded.userid);
         UsersHandler.getUserByID(decoded.userid).then((data) => {
           if (data.dataValues.banned === 1)
             return res.status(401).json({success: false, message: 'You are banned'});
@@ -39,11 +40,11 @@ const checkSimpleUser = (req, res, next) => {
             req.decoded = decoded;
             next();
           }
-        });
+        })
+        .catch((err) => res.status(403).send("Invalid user, please login in again"));
       }
     });
   } else {
-
     // if there is no token
     // return an error
     return res.status(403).send({
@@ -73,13 +74,13 @@ const checkAdminAccess = (req, res, next) => {
       } else { //valid admin access
         isStillAdmin(decoded.username).then((data) => {
           if (data === false) {
-            return res.json({ success: false, message: 'No admin access'});
+            return res.json({ success: false, message: 'You are no longer an admin'});
           } else {
             req.decoded = decoded;
             next();
           }
         }).catch((err) => {
-          return res.json({status:503, message:"Database not work"}); 
+          return res.json({status:503, message:"Database not work"});
         });
       }
     });
