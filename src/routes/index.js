@@ -17,6 +17,12 @@ router.get('/admin/', (req, res) => {
 router.get('/user/', (req, res) => {
   res.send("User access aproved");
 });
+router.get('/admin/panel', (req, res) => {
+  res.render('admin.ejs');
+});
+router.get('/user/checkConnection', (req, res) => {
+  res.send("SUCCES");
+});
 
 router.get('/login', (req, res) => res.render('login.ejs'));
 router.get('/signup', (req, res) => res.render('signup.ejs'));

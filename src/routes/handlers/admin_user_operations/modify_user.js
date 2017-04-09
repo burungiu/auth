@@ -26,7 +26,6 @@ const removeUser = (req, res) => {
     res.send(200).send({status:200, message:"User was succesfuly removed"});
   })
   .catch((err) => {
-    console.log(err);
     if (err === "No user") {
       res.status(404).send({status:404, message:"User not found"});
     } else {

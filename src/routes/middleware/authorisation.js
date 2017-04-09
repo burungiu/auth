@@ -32,7 +32,6 @@ const checkSimpleUser = (req, res, next) => {
       if (err ) { //invalid token
         return res.status(401).json({ success: false, message: 'Failed to authenticate token.' });
       } else {
-        console.log(decoded.userid);
         UsersHandler.getUserByID(decoded.userid).then((data) => {
           if (data.dataValues.banned === 1)
             return res.status(401).json({success: false, message: 'You are banned'});
@@ -47,11 +46,11 @@ const checkSimpleUser = (req, res, next) => {
   } else {
     // if there is no token
     // return an error
+
     return res.status(403).send({
         success: false,
         message: 'No token provided.'
     });
-
   }
 };
 

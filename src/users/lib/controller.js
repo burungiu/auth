@@ -9,8 +9,8 @@ const getAllUsers = () => {
 }
 
 const getUserByID = (accountId) => {
-  return User.findOne({where:{idusers:accountId}}).then((data) => {
-    console.log(data);
+  return User.findOne({where:{idusers:accountId}})
+  .then((data) => {
     if (_.isEmpty(data) || data === null || data.length === 0) {
       return Promise.reject("No user");
     } else {
