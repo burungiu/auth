@@ -20,7 +20,39 @@ const unsetBan = (req, res) => {
   });
 }
 
+const removeUser = (req, res) => {
+  UsersHandler.removeUser(req.params.accountID).
+  then((data) => {
+    res.send(200).send({status:200, message:"User was succesfuly removed"});
+  })
+  .catch((err) => {
+    console.log(err);
+    if (err === "No user") {
+      res.status(404).send({status:404, message:"User not found"});
+    } else {
+      res.status(503).send({status:503, message:"Database doesn't work"});
+    }
+  })
+}
+
+const addUser = (req, res) => {
+  if (req.body.name && req.body.password && req.body.email) {
+    UsersHandler.addUser(req.body).
+    then((data) => {
+      res.status(200).send({status:200, message:"User was succesfuly removed"});
+    })
+    .catch((err) => {
+      res.send({success:false, message:err.name});
+    });
+  } else {
+    res.send({succes: false, message: "Need more parameters"});
+  }
+}
+
+
 module.exports = {
   setBan,
   unsetBan,
+  removeUser,
+  addUser,
 }

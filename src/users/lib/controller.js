@@ -1,5 +1,6 @@
 const User = require('../../models').Models.Users.Users;
 const _ = require('lodash');
+
 const getAllUsers = () => {
   return User.findAll().then((data) => data)
   .catch((err) => {
@@ -47,9 +48,39 @@ const unsetBan = (accountId) => {
   .catch((err) => Promise.reject(err));
 }
 
+const removeUser = (accountId) => {
+	return getUserByID(accountId).
+  then(() => {
+    return User.destroy({
+      where: {
+          idusers: accountId
+      }})
+      .then((data) => {
+        return "Success";
+      })
+      .catch((err) => Promise.reject(err));
+  })
+  .catch((err) => Promise.reject(err));
+}
+
+const addUser = (userInfo) => {
+	return User.create({
+    name: userInfo.name,
+    password: userInfo.password,
+    email: userInfo.email,
+    })
+    .then((data) => {
+      return "Success";
+    })
+    .catch((err) => Promise.reject(err));
+}
+
+
 module.exports = {
   getAllUsers,
   getUserByID,
   setBan,
   unsetBan,
+  removeUser,
+  addUser,
 }

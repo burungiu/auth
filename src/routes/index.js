@@ -9,6 +9,8 @@ router.get('/admin/users/', adminRoutes.getAllUsers);
 router.get('/admin/users/:accountId', adminRoutes.getUserByID);
 router.post('/admin/users/:accountID/setBan', usersModify.setBan);
 router.post('/admin/users/:accountID/unsetBan', usersModify.unsetBan);
+router.post('/admin/users/:accountID/remove', usersModify.removeUser);
+router.post('/admin/users/addUser/', usersModify.addUser);
 router.get('/admin/', (req, res) => {
   res.send("Admin access aproved");
 });

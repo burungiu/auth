@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 app.get("/", function(req, res) {
-  res.send(200);
+  res.redirect('/login');
 });
 app.use('/user/*', authFunction.checkSimpleUser);
 app.use('/admin/*', authFunction.checkAdminAccess);
