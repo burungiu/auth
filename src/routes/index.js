@@ -24,7 +24,7 @@ router.get('/user/checkConnection', (req, res) => {
   res.send("SUCCES");
 });
 
-router.get('/login', (req, res) => res.render('../../views/login.ejs')); //Trebuie modificat
+router.get('/login', (req, res) => res.render('login.ejs')); //Trebuie modificat
 router.get('/signup', (req, res) => res.render('signup.ejs'));
 
 module.exports = router;
