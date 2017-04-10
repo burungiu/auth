@@ -17,6 +17,7 @@ var jwt  = require('jsonwebtoken'); // used to create, sign, and verify tokens
 app.get("/", function(req, res) {
   res.redirect('/login');
 });
+app.use(express.static('views'));  //Trebuie modificat
 app.use('/user*', authFunction.checkSimpleUser);
 app.use('/admin*', authFunction.checkAdminAccess);
 app.use(indexRoutes);
