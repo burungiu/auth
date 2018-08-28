@@ -1,0 +1,11 @@
+{
+  "API_PORT": "3001",
+  "DATABASE": {
+   "host": "173.212.218.6",
+   "name": "basic_data",
+   "username": "root",
+   "password": "parolamysql123",
+   "dialect": "mysql"
+ },
+  "secret": "ilovescotchyscotch"
+}
